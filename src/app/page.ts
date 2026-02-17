@@ -1,1 +1,5 @@
-export { Home as default } from '@/lib/pages/home';
+import { redirect } from 'next/navigation';
+
+export default function Home() {
+  redirect('/hsk-reading');
+}

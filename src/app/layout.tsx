@@ -13,11 +13,12 @@ type RootLayoutProps = {
   children: React.ReactNode;
 };
 
-const APP_NAME = 'nextarter-chakra';
+const APP_NAME = 'BuBu HSK';
 
 export const metadata: Metadata = {
-  title: { default: APP_NAME, template: '%s | nextarter-chakra' },
-  description: 'Next.js + chakra-ui + TypeScript template',
+  title: { default: APP_NAME, template: '%s | BuBu HSK' },
+  description:
+    'Step by Step HSK Learning - Learn Chinese characters systematically',
   applicationName: APP_NAME,
   appleWebApp: {
     capable: true,
@@ -28,16 +29,17 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    url: 'https://nextarter-chakra.sznm.dev',
-    title: 'nextarter-chakra',
-    description: 'Next.js + chakra-ui + TypeScript template',
+    url: 'https://bubu-hsk.sznm.dev',
+    title: 'BuBu HSK - Step by Step HSK Learning',
+    description:
+      'Learn Chinese characters step by step with our HSK reading practice app',
     images: {
-      url: 'https://og-image.sznm.dev/**nextarter-chakra**.sznm.dev.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fsznm.dev%2Favataaars.svg&widths=250',
-      alt: 'nextarter-chakra.sznm.dev og-image',
+      url: 'https://og-image.sznm.dev/**bubu-hsk**.sznm.dev.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fsznm.dev%2Favataaars.svg&widths=250',
+      alt: 'BuBu HSK - Step by Step HSK Learning og-image',
     },
   },
   twitter: {
-    creator: '@agstnsnathaniel',
+    creator: '@bubu_hsk',
     card: 'summary_large_image',
   },
 };

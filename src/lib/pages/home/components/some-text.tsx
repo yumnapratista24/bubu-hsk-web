@@ -4,11 +4,11 @@ export const SomeText = () => {
   return (
     <Grid textAlign="center">
       <Heading as="h1" fontWeight="bold" size="2xl">
-        nextarter-chakra
+        步步 HSK - Bù Bù HSK
       </Heading>
 
       <Text fontSize="xs">
-        This is a Next.js app with Chakra-UI and TypeScript setup.
+        Step by Step HSK Learning - Learn Chinese characters systematically
       </Text>
     </Grid>
   );
