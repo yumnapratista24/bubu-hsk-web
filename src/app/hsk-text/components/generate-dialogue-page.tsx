@@ -19,18 +19,30 @@ export const GenerateDialoguePage = () => {
 
   const handleLevelChange = (level: string) => {
     const newLevel = Number.parseInt(level, 10) as HskLevel;
+    console.log('Level changed to:', newLevel); // Debug log
     setSelectedLevel(newLevel);
   };
 
   return (
     <Box px={2} py={6}>
-      {/* Header */}
+      {/* Main Header */}
       <Stack align="center" gap={3} mb={6}>
-        <Heading color={textColor} size="xl" textAlign="center">
-          Generate Dialogue
+        <Heading color={textColor} size={{ base: '2xl', md: '4xl' }} textAlign="center">
+          步步 HSK - Bù Bù HSK
         </Heading>
-        <Text color={subtitleColor} fontSize="sm" textAlign="center">
-          Generate AI-powered dialogues based on HSK level
+        <Text color={subtitleColor} fontSize={{ base: 'sm', md: 'lg' }} textAlign="center">
+          Your complete HSK learning companion
+        </Text>
+      </Stack>
+
+      {/* Section Header */}
+      <Stack align="center" gap={4} mb={8}>
+        <Heading color={textColor} size={{ base: 'xl', md: '2xl' }} textAlign="center">
+          Reading Hub
+        </Heading>
+        <Text color={subtitleColor} fontSize={{ base: 'sm', md: 'md' }} textAlign="center" maxW="600px">
+          Welcome to the reading hub, this is your place to exercise your Chinese characters reading skills. 
+          Feel free to generate, and re-generate the text!
         </Text>
 
         {/* HSK Level Filter - Bottom Sheet for mobile */}

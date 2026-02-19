@@ -1,8 +1,10 @@
-import { Box, Flex, Heading, Link } from '@chakra-ui/react';
+import { Box, Flex, Heading, Link, useBreakpointValue } from '@chakra-ui/react';
 
 import { ColorModeButton } from '@/components/ui/color-mode';
 
 export const Header = () => {
+  const isDesktop = useBreakpointValue({ base: false, md: true });
+
   return (
     <Flex align="center" as="header" justify="space-between" width="full">
       <Link href="/">
@@ -12,7 +14,7 @@ export const Header = () => {
       </Link>
 
       <Flex align="center" gap={4}>
-        <Link display={{ base: 'block', md: 'none' }} href="/generate-dialogue">
+        <Link display={{ base: 'block', md: 'none' }} href="/hsk-text">
           <Box
             _hover={{ color: 'blue.500' }}
             color="slate.600"
@@ -20,7 +22,7 @@ export const Header = () => {
             fontSize="sm"
             transition="color 0.2s"
           >
-            Dialogue
+            Reading Hub
           </Box>
         </Link>
         <Link href="/hsk-reading">
@@ -31,9 +33,26 @@ export const Header = () => {
             fontSize="sm"
             transition="color 0.2s"
           >
-            Hanzi
+            Practice Hub
           </Box>
         </Link>
+        {isDesktop && (
+          <>
+            <Box
+              _hover={{ color: 'blue.500' }}
+              color="slate.600"
+              cursor="pointer"
+              fontSize="sm"
+              transition="color 0.2s"
+              onClick={() => {
+                const element = document.getElementById('reading-hub');
+                element?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Reading Hub
+            </Box>
+          </>
+        )}
         <ColorModeButton />
       </Flex>
     </Flex>

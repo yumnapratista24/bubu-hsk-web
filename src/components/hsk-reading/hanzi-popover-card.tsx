@@ -104,16 +104,16 @@ export const HanziPopoverCard = ({ hanzi }: HanziPopoverCardProps) => {
 
                 {/* Example */}
                 <Box borderColor={borderColor} borderTop="1px" pt={3}>
-                  <Text color={subtitleColor} fontSize="xs" mb={1}>
+                  <Text color={subtitleColor} fontSize="sm" mb={1}>
                     Example
                   </Text>
-                  <Text color={textColor} fontSize="sm">
+                  <Text color={textColor} fontSize="md" fontWeight="medium">
                     {hanzi.example.hanzi}
                   </Text>
-                  <Text color={subtitleColor} fontSize="xs" fontStyle="italic">
+                  <Text color={subtitleColor} fontSize="sm" fontStyle="italic">
                     {hanzi.example.pinyin}
                   </Text>
-                  <Text color={subtitleColor} fontSize="xs">
+                  <Text color={subtitleColor} fontSize="sm">
                     {hanzi.example.english}
                   </Text>
                 </Box>

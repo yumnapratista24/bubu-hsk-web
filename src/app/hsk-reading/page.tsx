@@ -57,7 +57,6 @@ export default async function HskReading({
     return (
       <HskReadingPage
         error={error instanceof Error ? error.message : 'Unknown error'}
-        initialData={null}
         initialLevel={level}
       />
     );

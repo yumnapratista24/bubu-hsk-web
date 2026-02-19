@@ -180,7 +180,7 @@ export const DialoguePanel = ({ hskLevel }: DialoguePanelProps) => {
       border="1px solid"
       borderColor={borderColor}
       borderRadius="lg"
-      p={4}
+      p={isDesktop ? 6 : 4}
       width="full"
     >
       {/* Description */}
@@ -226,33 +226,51 @@ export const DialoguePanel = ({ hskLevel }: DialoguePanelProps) => {
         </Flex>
       )}
 
-      {/* Controls - Mobile (CTA at top for options, button moves below content) */}
+      {/* Controls - Mobile */}
       {!isDesktop && (
-        <Flex align="center" flexWrap="nowrap" gap={2} mb={4}>
-          <ComplexitySelectSheet
-            hskLevel={hskLevel}
-            onChange={setComplexity}
-            value={complexity}
-          />
-          <Checkbox.Root
-            checked={showPinyin}
-            onCheckedChange={(details) => setShowPinyin(!!details.checked)}
-            size="sm"
+        <>
+          {/* Top row: Complexity, Pinyin, English checkboxes */}
+          <Flex align="center" justify="space-between" mb={4}>
+            <ComplexitySelectSheet
+              hskLevel={hskLevel}
+              onChange={setComplexity}
+              value={complexity}
+            />
+            <Flex align="center" gap={3}>
+              <Checkbox.Root
+                checked={showPinyin}
+                onCheckedChange={(details) => setShowPinyin(!!details.checked)}
+                size="sm"
+              >
+                <Checkbox.HiddenInput />
+                <Checkbox.Control />
+                <Checkbox.Label>Pinyin</Checkbox.Label>
+              </Checkbox.Root>
+              <Checkbox.Root
+                checked={showEnglish}
+                onCheckedChange={(details) => setShowEnglish(!!details.checked)}
+                size="sm"
+              >
+                <Checkbox.HiddenInput />
+                <Checkbox.Control />
+                <Checkbox.Label>English</Checkbox.Label>
+              </Checkbox.Root>
+            </Flex>
+          </Flex>
+
+          {/* Bottom: Full-width Generate button */}
+          <Button
+            colorPalette="blue"
+            loading={isLoading}
+            onClick={handleGenerate}
+            size="md"
+            width="full"
+            mb={4}
           >
-            <Checkbox.HiddenInput />
-            <Checkbox.Control />
-            <Checkbox.Label>Pinyin</Checkbox.Label>
-          </Checkbox.Root>
-          <Checkbox.Root
-            checked={showEnglish}
-            onCheckedChange={(details) => setShowEnglish(!!details.checked)}
-            size="sm"
-          >
-            <Checkbox.HiddenInput />
-            <Checkbox.Control />
-            <Checkbox.Label>English</Checkbox.Label>
-          </Checkbox.Root>
-        </Flex>
+            <LuSparkles />
+            Generate
+          </Button>
+        </>
       )}
 
       {/* Content Area */}
@@ -261,28 +279,13 @@ export const DialoguePanel = ({ hskLevel }: DialoguePanelProps) => {
         border="1px solid"
         borderColor={borderColor}
         borderRadius="md"
-        maxH="500px"
-        minH="200px"
+        maxH={isDesktop ? "600px" : "500px"}
+        minH={isDesktop ? "300px" : "200px"}
         overflowY="auto"
-        p={3}
+        p={isDesktop ? 4 : 3}
       >
         {renderDialogueContent()}
       </Box>
-
-      {/* Mobile CTA - Below content for better thumb reach */}
-      {!isDesktop && (
-        <Button
-          colorPalette="blue"
-          loading={isLoading}
-          mt={4}
-          onClick={handleGenerate}
-          size="md"
-          width="full"
-        >
-          <LuSparkles />
-          Generate Dialogue
-        </Button>
-      )}
     </Box>
   );
 };
