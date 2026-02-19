@@ -4,7 +4,7 @@ import { Box, Heading, Stack, Text, useBreakpointValue } from '@chakra-ui/react'
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
 
-import { DialoguePanel } from '@/components/hsk-reading/dialogue-panel';
+import { TabbedDialoguePanel } from '@/components/hsk-reading/tabbed-dialogue-panel';
 import { LevelSelect } from '@/components/hsk-reading/level-select';
 import { LevelSelectSheet } from '@/components/hsk-reading/level-select-sheet';
 import type { HskLevel } from '@/lib/types/hsk';
@@ -46,9 +46,9 @@ export const ReadingHubSection = () => {
         </Stack>
       </Stack>
 
-      {/* Dialogue Panel - Larger Container */}
+      {/* Tabbed Dialogue Panel - Larger Container */}
       <Box maxW="4xl" mx="auto">
-        <DialoguePanel hskLevel={selectedLevel} />
+        <TabbedDialoguePanel hskLevel={selectedLevel} />
       </Box>
     </Box>
   );

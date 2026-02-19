@@ -34,6 +34,24 @@ export interface DialogueResponse {
   success: boolean;
 }
 
+export interface GradedTextLine {
+  word: string;
+  pinyin: string;
+  english: string;
+}
+
+export interface GradedTextData {
+  title: string;
+  line_details: Array<GradedTextLine>;
+  english: Array<string>;
+  error: string | null;
+}
+
+export interface GradedTextResponse {
+  data: GradedTextData;
+  success: boolean;
+}
+
 export type HskLevel = 1 | 2 | 3 | 4;
 
 export type Complexity = 1 | 2 | 3;

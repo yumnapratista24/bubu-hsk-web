@@ -25,7 +25,7 @@ export const Header = () => {
             Reading Hub
           </Box>
         </Link>
-        <Link href="/hsk-reading">
+        <Link display={{ base: 'block', md: 'none' }} href="/hsk-reading">
           <Box
             _hover={{ color: 'blue.500' }}
             color="slate.600"
@@ -50,6 +50,19 @@ export const Header = () => {
               }}
             >
               Reading Hub
+            </Box>
+            <Box
+              _hover={{ color: 'blue.500' }}
+              color="slate.600"
+              cursor="pointer"
+              fontSize="sm"
+              transition="color 0.2s"
+              onClick={() => {
+                const element = document.getElementById('practice-hub');
+                element?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Practice Hub
             </Box>
           </>
         )}

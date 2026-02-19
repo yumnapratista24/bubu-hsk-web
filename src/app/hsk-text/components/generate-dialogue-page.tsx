@@ -4,7 +4,7 @@ import { Box, Heading, Stack, Text } from '@chakra-ui/react';
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
 
-import { DialoguePanel } from '@/components/hsk-reading/dialogue-panel';
+import { TabbedDialoguePanel } from '@/components/hsk-reading/tabbed-dialogue-panel';
 import { LevelSelectSheet } from '@/components/hsk-reading/level-select-sheet';
 import type { HskLevel } from '@/lib/types/hsk';
 
@@ -49,8 +49,8 @@ export const GenerateDialoguePage = () => {
         <LevelSelectSheet onChange={handleLevelChange} value={selectedLevel} />
       </Stack>
 
-      {/* Dialogue Panel */}
-      <DialoguePanel hskLevel={selectedLevel} />
+      {/* Tabbed Dialogue Panel */}
+      <TabbedDialoguePanel hskLevel={selectedLevel} />
     </Box>
   );
 };
