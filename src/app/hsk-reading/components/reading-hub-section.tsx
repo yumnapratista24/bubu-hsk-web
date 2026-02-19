@@ -1,12 +1,18 @@
 'use client';
 
-import { Box, Heading, Stack, Text, useBreakpointValue } from '@chakra-ui/react';
+import {
+  Box,
+  Heading,
+  Stack,
+  Text,
+  useBreakpointValue,
+} from '@chakra-ui/react';
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
 
-import { TabbedDialoguePanel } from '@/components/hsk-reading/tabbed-dialogue-panel';
 import { LevelSelect } from '@/components/hsk-reading/level-select';
 import { LevelSelectSheet } from '@/components/hsk-reading/level-select-sheet';
+import { TabbedDialoguePanel } from '@/components/hsk-reading/tabbed-dialogue-panel';
 import type { HskLevel } from '@/lib/types/hsk';
 
 export const ReadingHubSection = () => {
@@ -28,12 +34,22 @@ export const ReadingHubSection = () => {
     <Box id="reading-hub" py={8}>
       {/* Section Header */}
       <Stack align="center" gap={4} mb={8}>
-        <Heading color={textColor} size={{ base: '2xl', md: '3xl' }} textAlign="center">
+        <Heading
+          color={textColor}
+          size={{ base: '2xl', md: '3xl' }}
+          textAlign="center"
+        >
           Reading Hub
         </Heading>
-        <Text color={subtitleColor} fontSize={{ base: 'sm', md: 'md' }} textAlign="center" maxW="600px">
-          Welcome to the reading hub, this is your place to exercise your Chinese characters reading skills. 
-          Feel free to generate, and re-generate the text!
+        <Text
+          color={subtitleColor}
+          fontSize={{ base: 'sm', md: 'md' }}
+          maxW="600px"
+          textAlign="center"
+        >
+          Welcome to the reading hub, this is your place to exercise your
+          Chinese characters reading skills. Feel free to generate, and
+          re-generate the text!
         </Text>
 
         {/* HSK Level Filter */}
@@ -41,7 +57,10 @@ export const ReadingHubSection = () => {
           {isDesktop ? (
             <LevelSelect onChange={handleLevelChange} value={selectedLevel} />
           ) : (
-            <LevelSelectSheet onChange={handleLevelChange} value={selectedLevel} />
+            <LevelSelectSheet
+              onChange={handleLevelChange}
+              value={selectedLevel}
+            />
           )}
         </Stack>
       </Stack>

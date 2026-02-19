@@ -54,7 +54,7 @@ export const GradedTextTab = ({ hskLevel }: GradedTextTabProps) => {
       }
 
       const data = await response.json();
-      
+
       if (data.success) {
         setGradedText(data.data);
       } else {
@@ -83,7 +83,7 @@ export const GradedTextTab = ({ hskLevel }: GradedTextTabProps) => {
 
     if (error) {
       return (
-        <Box textAlign="center" py={8}>
+        <Box py={8} textAlign="center">
           <Text color="red.500" mb={4}>
             {error}
           </Text>
@@ -96,7 +96,7 @@ export const GradedTextTab = ({ hskLevel }: GradedTextTabProps) => {
 
     if (!gradedText) {
       return (
-        <Box textAlign="center" py={12}>
+        <Box py={12} textAlign="center">
           <Text color={subtitleColor} fontSize="lg" mb={4}>
             Click generate to create a graded text for reading practice
           </Text>
@@ -110,8 +110,8 @@ export const GradedTextTab = ({ hskLevel }: GradedTextTabProps) => {
         {gradedText.title && (
           <Heading
             color={textColor}
-            size={{ base: 'lg', md: 'xl' }}
             mb={6}
+            size={{ base: 'lg', md: 'xl' }}
             textAlign="center"
           >
             {gradedText.title}
@@ -127,7 +127,7 @@ export const GradedTextTab = ({ hskLevel }: GradedTextTabProps) => {
           mb={4}
         >
           {gradedText.line_details.map((line, index) => (
-            <Box key={index} as="span">
+            <Box as="span" key={`graded-line-${line.word}-${index}`}>
               <GradedTextPopover
                 line={{
                   word: line.word,
@@ -143,22 +143,18 @@ export const GradedTextTab = ({ hskLevel }: GradedTextTabProps) => {
 
         {/* English Translation */}
         {showEnglish && gradedText.english.length > 0 && (
-          <Box
-            borderTop="1px solid"
-            borderColor={borderColor}
-            mt={6}
-            pt={4}
-          >
-            <Text color={subtitleColor} fontSize="sm" mb={2} fontWeight="medium">
+          <Box borderColor={borderColor} borderTop="1px solid" mt={6} pt={4}>
+            <Text
+              color={subtitleColor}
+              fontSize="sm"
+              fontWeight="medium"
+              mb={2}
+            >
               Translation
             </Text>
-            <Text
-              color={textColor}
-              fontSize="sm"
-              lineHeight="relaxed"
-            >
+            <Text color={textColor} fontSize="sm" lineHeight="relaxed">
               {gradedText.english.map((sentence, index) => (
-                <Box key={index} as="span">
+                <Box as="span" key={`english-sentence-${index}`}>
                   {sentence}
                   {index < gradedText.english.length - 1 && ' '}
                 </Box>
@@ -173,8 +169,9 @@ export const GradedTextTab = ({ hskLevel }: GradedTextTabProps) => {
   return (
     <Box>
       {/* Beta Notice */}
-      <Text color={subtitleColor} fontSize="xs" textAlign="center" mb={3}>
-        The process to generate might take up to 30 seconds due to beta version limitation
+      <Text color={subtitleColor} fontSize="xs" mb={3} textAlign="center">
+        The process to generate might take up to 30 seconds due to beta version
+        limitation
       </Text>
 
       {/* Controls */}
@@ -229,10 +226,10 @@ export const GradedTextTab = ({ hskLevel }: GradedTextTabProps) => {
             <Button
               colorPalette="blue"
               loading={isLoading}
+              mb={2}
               onClick={handleGenerate}
               size="md"
               width="full"
-              mb={2}
             >
               <LuSparkles />
               Generate
@@ -247,8 +244,8 @@ export const GradedTextTab = ({ hskLevel }: GradedTextTabProps) => {
         border="1px solid"
         borderColor={borderColor}
         borderRadius="md"
-        maxH={isDesktop ? "600px" : "500px"}
-        minH={isDesktop ? "300px" : "200px"}
+        maxH={isDesktop ? '600px' : '500px'}
+        minH={isDesktop ? '300px' : '200px'}
         overflowY="auto"
         p={isDesktop ? 4 : 3}
       >

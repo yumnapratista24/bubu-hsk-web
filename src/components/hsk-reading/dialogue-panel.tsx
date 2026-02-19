@@ -262,10 +262,10 @@ export const DialoguePanel = ({ hskLevel }: DialoguePanelProps) => {
           <Button
             colorPalette="blue"
             loading={isLoading}
+            mb={4}
             onClick={handleGenerate}
             size="md"
             width="full"
-            mb={4}
           >
             <LuSparkles />
             Generate
@@ -279,8 +279,8 @@ export const DialoguePanel = ({ hskLevel }: DialoguePanelProps) => {
         border="1px solid"
         borderColor={borderColor}
         borderRadius="md"
-        maxH={isDesktop ? "600px" : "500px"}
-        minH={isDesktop ? "300px" : "200px"}
+        maxH={isDesktop ? '600px' : '500px'}
+        minH={isDesktop ? '300px' : '200px'}
         overflowY="auto"
         p={isDesktop ? 4 : 3}
       >

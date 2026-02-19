@@ -69,19 +69,19 @@ export const HskReadingPage = ({
         <VStack gap={0} width="full">
           <ReadingHubSection />
           <PracticeHubSection
+            error={initialError}
             initialData={initialData}
             initialLevel={initialLevel}
             initialPage={initialPage}
-            error={initialError}
           />
         </VStack>
       ) : (
         // Mobile: Practice Hub Only (Reading Hub is separate page)
         <PracticeHubSection
+          error={initialError}
           initialData={initialData}
           initialLevel={initialLevel}
           initialPage={initialPage}
-          error={initialError}
         />
       )}
     </Box>

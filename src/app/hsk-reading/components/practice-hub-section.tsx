@@ -1,6 +1,15 @@
 'use client';
 
-import { Box, Button, Heading, Skeleton, Stack, Text, useBreakpointValue, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Heading,
+  Skeleton,
+  Stack,
+  Text,
+  useBreakpointValue,
+  VStack,
+} from '@chakra-ui/react';
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
 import { LuShuffle } from 'react-icons/lu';
@@ -105,13 +114,6 @@ export const PracticeHubSection = ({
         {/* Hanzi Grid - 3 lines with horizontal scrolling for desktop */}
         {isDesktop ? (
           <Box
-            display="flex"
-            flexDirection="column"
-            gap={4}
-            width="full"
-            height="280px" // Balanced height
-            overflowX="auto"
-            overflowY="hidden"
             css={{
               '&::-webkit-scrollbar': {
                 height: '8px',
@@ -125,17 +127,27 @@ export const PracticeHubSection = ({
                 borderRadius: '4px',
               },
             }}
+            display="flex"
+            flexDirection="column"
+            gap={4}
+            height="280px" // Balanced height
+            overflowX="auto"
+            overflowY="hidden"
+            width="full"
           >
             {/* Create 3 rows */}
             {Array.from({ length: 3 }).map((_, rowIndex) => (
               <Box
-                key={`row-${rowIndex}`}
+                key={`hanzi-row-${rowIndex}`}
                 display="flex"
                 gap={4}
                 minWidth="max-content"
               >
                 {displayWords
-                  .slice(rowIndex * Math.ceil(displayWords.length / 3), (rowIndex + 1) * Math.ceil(displayWords.length / 3))
+                  .slice(
+                    rowIndex * Math.ceil(displayWords.length / 3),
+                    (rowIndex + 1) * Math.ceil(displayWords.length / 3)
+                  )
                   .map((hanzi: HanziWord) => (
                     <Box key={hanzi.id} minW="100px">
                       <HanziPopoverCard hanzi={hanzi} />
@@ -188,15 +200,30 @@ export const PracticeHubSection = ({
   }
 
   return (
-    <Box id="practice-hub" py={8} borderTop="1px solid" borderColor={isDark ? '#475569' : '#e2e8f0'}>
+    <Box
+      borderColor={isDark ? '#475569' : '#e2e8f0'}
+      borderTop="1px solid"
+      id="practice-hub"
+      py={8}
+    >
       {/* Section Header */}
       <Stack align="center" gap={4} mb={8}>
-        <Heading color={textColor} size={{ base: '2xl', md: '3xl' }} textAlign="center">
+        <Heading
+          color={textColor}
+          size={{ base: '2xl', md: '3xl' }}
+          textAlign="center"
+        >
           Practice Hub
         </Heading>
-        <Text color={subtitleColor} fontSize={{ base: 'sm', md: 'md' }} textAlign="center" maxW="600px">
-          Welcome to the practice hub, this is your place to practice each word, shuffle the words for better 
-          memorization, and check the detail to understand the meaning
+        <Text
+          color={subtitleColor}
+          fontSize={{ base: 'sm', md: 'md' }}
+          maxW="600px"
+          textAlign="center"
+        >
+          Welcome to the practice hub, this is your place to practice each word,
+          shuffle the words for better memorization, and check the detail to
+          understand the meaning
         </Text>
 
         {/* HSK Level Filter and Shuffle */}
@@ -204,7 +231,10 @@ export const PracticeHubSection = ({
           {isDesktop ? (
             <LevelSelect onChange={handleLevelChange} value={selectedLevel} />
           ) : (
-            <LevelSelectSheet onChange={handleLevelChange} value={selectedLevel} />
+            <LevelSelectSheet
+              onChange={handleLevelChange}
+              value={selectedLevel}
+            />
           )}
 
           <Button onClick={handleShuffle} size="sm" variant="outline">

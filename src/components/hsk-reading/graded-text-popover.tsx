@@ -1,6 +1,12 @@
 'use client';
 
-import { Box, Popover, Portal, Text, useBreakpointValue } from '@chakra-ui/react';
+import {
+  Box,
+  Popover,
+  Portal,
+  Text,
+  useBreakpointValue,
+} from '@chakra-ui/react';
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
 
@@ -19,7 +25,7 @@ export const GradedTextPopover = ({ line }: GradedTextPopoverProps) => {
   const cardBg = isDark ? 'slate.800' : 'white';
   const textColor = isDark ? 'slate.50' : 'slate.900';
   const subtitleColor = isDark ? 'slate.400' : 'slate.600';
-  const borderColor = isDark ? 'slate.700' : 'slate.200';
+  const _borderColor = isDark ? 'slate.700' : 'slate.200';
 
   const getOpenBgColor = () => {
     if (!isOpen) {
@@ -35,7 +41,7 @@ export const GradedTextPopover = ({ line }: GradedTextPopoverProps) => {
     return isDark ? '#94a3b8' : '#e2e8f0';
   };
 
-  const getWordStyle = () => {
+  const _getWordStyle = () => {
     if (isOpen) {
       return {
         color: 'blue.500',
@@ -56,7 +62,6 @@ export const GradedTextPopover = ({ line }: GradedTextPopoverProps) => {
     >
       <Popover.Trigger asChild>
         <Box
-          as="span"
           _hover={{
             color: 'blue.500',
             cursor: 'pointer',
@@ -65,7 +70,7 @@ export const GradedTextPopover = ({ line }: GradedTextPopoverProps) => {
             textDecorationThickness: '2px',
             textUnderlineOffset: '4px',
           }}
-          transition="all 0.2s"
+          as="span"
           mx={0.5}
           style={{
             color: isOpen ? 'blue.500' : 'inherit',
@@ -74,6 +79,7 @@ export const GradedTextPopover = ({ line }: GradedTextPopoverProps) => {
             textDecorationThickness: isOpen ? '2px' : 'inherit',
             textUnderlineOffset: isOpen ? '4px' : 'inherit',
           }}
+          transition="all 0.2s"
         >
           {line.word}
         </Box>
@@ -86,18 +92,28 @@ export const GradedTextPopover = ({ line }: GradedTextPopoverProps) => {
             borderColor={getClosedBorderColor()}
             borderRadius="md"
             boxShadow="lg"
-            maxWidth={isDesktop ? "300px" : "140px"}
+            maxWidth={isDesktop ? '300px' : '140px'}
             p={isDesktop ? 4 : 1}
           >
             <Popover.Body>
               <Box textAlign="center">
                 {/* Pinyin */}
-                <Text color={subtitleColor} fontSize={isDesktop ? "lg" : "md"} mb={2} textAlign="center">
+                <Text
+                  color={subtitleColor}
+                  fontSize={isDesktop ? 'lg' : 'md'}
+                  mb={2}
+                  textAlign="center"
+                >
                   {line.pinyin}
                 </Text>
-                
+
                 {/* English */}
-                <Text color={textColor} fontSize={isDesktop ? "md" : "sm"} fontWeight="medium" textAlign="center">
+                <Text
+                  color={textColor}
+                  fontSize={isDesktop ? 'md' : 'sm'}
+                  fontWeight="medium"
+                  textAlign="center"
+                >
                   {line.english}
                 </Text>
               </Box>

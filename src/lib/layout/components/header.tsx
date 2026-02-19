@@ -43,11 +43,11 @@ export const Header = () => {
               color="slate.600"
               cursor="pointer"
               fontSize="sm"
-              transition="color 0.2s"
               onClick={() => {
                 const element = document.getElementById('reading-hub');
                 element?.scrollIntoView({ behavior: 'smooth' });
               }}
+              transition="color 0.2s"
             >
               Reading Hub
             </Box>
@@ -56,11 +56,11 @@ export const Header = () => {
               color="slate.600"
               cursor="pointer"
               fontSize="sm"
-              transition="color 0.2s"
               onClick={() => {
                 const element = document.getElementById('practice-hub');
                 element?.scrollIntoView({ behavior: 'smooth' });
               }}
+              transition="color 0.2s"
             >
               Practice Hub
             </Box>

@@ -4,8 +4,8 @@ import { Box, Heading, Stack, Text } from '@chakra-ui/react';
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
 
-import { TabbedDialoguePanel } from '@/components/hsk-reading/tabbed-dialogue-panel';
 import { LevelSelectSheet } from '@/components/hsk-reading/level-select-sheet';
+import { TabbedDialoguePanel } from '@/components/hsk-reading/tabbed-dialogue-panel';
 import type { HskLevel } from '@/lib/types/hsk';
 
 export const GenerateDialoguePage = () => {
@@ -27,22 +27,40 @@ export const GenerateDialoguePage = () => {
     <Box px={2} py={6}>
       {/* Main Header */}
       <Stack align="center" gap={3} mb={6}>
-        <Heading color={textColor} size={{ base: '2xl', md: '4xl' }} textAlign="center">
+        <Heading
+          color={textColor}
+          size={{ base: '2xl', md: '4xl' }}
+          textAlign="center"
+        >
           步步 HSK - Bù Bù HSK
         </Heading>
-        <Text color={subtitleColor} fontSize={{ base: 'sm', md: 'lg' }} textAlign="center">
+        <Text
+          color={subtitleColor}
+          fontSize={{ base: 'sm', md: 'lg' }}
+          textAlign="center"
+        >
           Your complete HSK learning companion
         </Text>
       </Stack>
 
       {/* Section Header */}
       <Stack align="center" gap={4} mb={8}>
-        <Heading color={textColor} size={{ base: 'xl', md: '2xl' }} textAlign="center">
+        <Heading
+          color={textColor}
+          size={{ base: 'xl', md: '2xl' }}
+          textAlign="center"
+        >
           Reading Hub
         </Heading>
-        <Text color={subtitleColor} fontSize={{ base: 'sm', md: 'md' }} textAlign="center" maxW="600px">
-          Welcome to the reading hub, this is your place to exercise your Chinese characters reading skills. 
-          Feel free to generate, and re-generate the text!
+        <Text
+          color={subtitleColor}
+          fontSize={{ base: 'sm', md: 'md' }}
+          maxW="600px"
+          textAlign="center"
+        >
+          Welcome to the reading hub, this is your place to exercise your
+          Chinese characters reading skills. Feel free to generate, and
+          re-generate the text!
         </Text>
 
         {/* HSK Level Filter - Bottom Sheet for mobile */}

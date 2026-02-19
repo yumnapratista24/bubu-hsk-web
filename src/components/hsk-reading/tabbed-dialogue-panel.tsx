@@ -17,11 +17,11 @@ export const TabbedDialoguePanel = ({ hskLevel }: TabbedDialoguePanelProps) => {
         <Tabs.Trigger value="dialogue">Dialogue</Tabs.Trigger>
         <Tabs.Trigger value="graded-text">Graded Text</Tabs.Trigger>
       </Tabs.List>
-      
+
       <Tabs.Content value="dialogue">
         <DialoguePanel hskLevel={hskLevel} />
       </Tabs.Content>
-      
+
       <Tabs.Content value="graded-text">
         <GradedTextTab hskLevel={hskLevel} />
       </Tabs.Content>
