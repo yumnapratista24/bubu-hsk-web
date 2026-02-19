@@ -16,6 +16,7 @@ import { LuSparkles } from 'react-icons/lu';
 
 import { ComplexitySelect } from '@/components/hsk-reading/complexity-select';
 import { ComplexitySelectSheet } from '@/components/hsk-reading/complexity-select-sheet';
+import { useAnalytics } from '@/lib/hooks/use-analytics';
 import type { Complexity, DialogueData, HskLevel } from '@/lib/types/hsk';
 
 interface DialoguePanelProps {
@@ -33,6 +34,7 @@ export const DialoguePanel = ({ hskLevel }: DialoguePanelProps) => {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
   const isDesktop = useBreakpointValue({ base: false, md: true });
+  const { trackDialogueGeneration } = useAnalytics();
 
   const borderColor = isDark ? '#475569' : '#cbd5e1';
   const bgColor = isDark ? '#1e293b' : '#f8fafc';
@@ -58,6 +60,12 @@ export const DialoguePanel = ({ hskLevel }: DialoguePanelProps) => {
 
       if (result.success && result.data) {
         setDialogue(result.data);
+        // Track successful dialogue generation
+        trackDialogueGeneration({
+          hskLevel,
+          complexity: complexity.toString(),
+          deviceType: isDesktop ? 'desktop' : 'mobile',
+        });
       } else {
         throw new Error(result.data?.error || 'Failed to generate dialogue');
       }

@@ -19,6 +19,7 @@ import { HanziDetailSheet } from '@/components/hsk-reading/hanzi-detail-sheet';
 import { HanziPopoverCard } from '@/components/hsk-reading/hanzi-popover-card';
 import { LevelSelect } from '@/components/hsk-reading/level-select';
 import { LevelSelectSheet } from '@/components/hsk-reading/level-select-sheet';
+import { useAnalytics } from '@/lib/hooks/use-analytics';
 import { useHskWords } from '@/lib/hooks/use-hsk-words';
 import type { HanziWord, HskApiResponse, HskLevel } from '@/lib/types/hsk';
 
@@ -43,6 +44,7 @@ export const PracticeHubSection = ({
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
   const isDesktop = useBreakpointValue({ base: false, md: true });
+  const { trackHskLevelSelect, trackHanziShuffle, trackHanziPopoverOpen } = useAnalytics();
 
   // Use SWR with SSR fallback data
   const { words, total, isLoading, error } = useHskWords({
@@ -56,12 +58,27 @@ export const PracticeHubSection = ({
 
   const handleLevelChange = (level: string) => {
     const newLevel = Number.parseInt(level, 10) as HskLevel;
+    const previousLevel = selectedLevel;
     setSelectedLevel(newLevel);
+    
+    // Track HSK level change
+    trackHskLevelSelect({
+      fromLevel: previousLevel,
+      toLevel: newLevel,
+      deviceType: isDesktop ? 'desktop' : 'mobile',
+    });
   };
 
   const handleCardClick = (hanzi: HanziWord) => {
     setSelectedHanzi(hanzi);
     setIsModalOpen(true);
+    
+    // Track hanzi popover open
+    trackHanziPopoverOpen({
+      hskLevel: selectedLevel,
+      wordId: hanzi.id.toString(),
+      deviceType: isDesktop ? 'desktop' : 'mobile',
+    });
   };
 
   const handleModalClose = () => {
@@ -73,6 +90,13 @@ export const PracticeHubSection = ({
     const currentWords = shuffledWords.length > 0 ? shuffledWords : words;
     const shuffled = [...currentWords].sort(() => Math.random() - 0.5);
     setShuffledWords(shuffled);
+    
+    // Track shuffle usage
+    trackHanziShuffle({
+      hskLevel: selectedLevel,
+      wordCount: currentWords.length,
+      deviceType: isDesktop ? 'desktop' : 'mobile',
+    });
   };
 
   const displayWords = shuffledWords.length > 0 ? shuffledWords : words;

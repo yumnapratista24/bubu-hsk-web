@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import { Figtree as FontBody } from 'next/font/google';
 
+import { PageTracker } from '@/components/analytics/page-tracker';
 import { Provider } from '@/components/ui/provider';
 import { Layout } from '@/lib/layout';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const fontBody = FontBody({
   subsets: ['latin'],
@@ -55,9 +57,15 @@ const RootLayout = ({ children }: RootLayoutProps) => {
     <html className={fontBody.className} lang="en" suppressHydrationWarning>
       <body>
         <Provider>
-          <Layout>{children}</Layout>
+          <Layout>
+            {children}
+            <PageTracker />
+          </Layout>
         </Provider>
       </body>
+      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+      )}
     </html>
   );
 };

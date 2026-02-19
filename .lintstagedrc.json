@@ -1,3 +1,3 @@
 {
-  "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx}": ["ultracite fix"]
+  "*.{js,jsx,json,jsonc,css,scss,md,mdx}": ["ultracite fix"]
 }

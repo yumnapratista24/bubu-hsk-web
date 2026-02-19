@@ -10,13 +10,16 @@ import {
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
 
-import type { GradedTextLine } from '@/lib/types/hsk';
-
 interface GradedTextPopoverProps {
-  line: GradedTextLine;
+  line: {
+    word: string;
+    pinyin: string;
+    english: string;
+  };
+  onWordClick?: () => void;
 }
 
-export const GradedTextPopover = ({ line }: GradedTextPopoverProps) => {
+export const GradedTextPopover = ({ line, onWordClick }: GradedTextPopoverProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
@@ -72,6 +75,10 @@ export const GradedTextPopover = ({ line }: GradedTextPopoverProps) => {
           }}
           as="span"
           mx={0.5}
+          onClick={() => {
+            setIsOpen(!isOpen);
+            onWordClick?.();
+          }}
           style={{
             color: isOpen ? 'blue.500' : 'inherit',
             textDecoration: isOpen ? 'underline' : 'none',

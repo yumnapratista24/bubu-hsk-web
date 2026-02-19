@@ -18,6 +18,7 @@ import { LuSparkles } from 'react-icons/lu';
 import { ComplexitySelect } from '@/components/hsk-reading/complexity-select';
 import { ComplexitySelectSheet } from '@/components/hsk-reading/complexity-select-sheet';
 import { GradedTextPopover } from '@/components/hsk-reading/graded-text-popover';
+import { useAnalytics } from '@/lib/hooks/use-analytics';
 import type { Complexity, GradedTextData, HskLevel } from '@/lib/types/hsk';
 
 interface GradedTextTabProps {
@@ -34,6 +35,7 @@ export const GradedTextTab = ({ hskLevel }: GradedTextTabProps) => {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
   const isDesktop = useBreakpointValue({ base: false, md: true });
+  const { trackGradedTextGeneration, trackTranslationToggle, trackGradedTextWordClick } = useAnalytics();
 
   const borderColor = isDark ? '#475569' : '#cbd5e1';
   const bgColor = isDark ? '#1e293b' : '#f8fafc';
@@ -57,6 +59,12 @@ export const GradedTextTab = ({ hskLevel }: GradedTextTabProps) => {
 
       if (data.success) {
         setGradedText(data.data);
+        // Track successful graded text generation
+        trackGradedTextGeneration({
+          hskLevel,
+          complexity: complexity.toString(),
+          deviceType: isDesktop ? 'desktop' : 'mobile',
+        });
       } else {
         setError(data.data?.error || 'Failed to generate graded text');
       }
@@ -134,6 +142,13 @@ export const GradedTextTab = ({ hskLevel }: GradedTextTabProps) => {
                   pinyin: line.pinyin,
                   english: line.english,
                 }}
+                onWordClick={() => {
+                  trackGradedTextWordClick({
+                    word: line.word,
+                    hskLevel,
+                    deviceType: isDesktop ? 'desktop' : 'mobile',
+                  });
+                }}
               />
               {/* Add space between words */}
               <Box as="span" mx={2} />
@@ -194,7 +209,13 @@ export const GradedTextTab = ({ hskLevel }: GradedTextTabProps) => {
             </Button>
             <Checkbox.Root
               checked={showEnglish}
-              onCheckedChange={(details) => setShowEnglish(!!details.checked)}
+              onCheckedChange={(details) => {
+                setShowEnglish(!!details.checked);
+                trackTranslationToggle({
+                  action: !!details.checked ? 'show' : 'hide',
+                  deviceType: isDesktop ? 'desktop' : 'mobile',
+                });
+              }}
               size="sm"
             >
               <Checkbox.HiddenInput />
@@ -213,7 +234,13 @@ export const GradedTextTab = ({ hskLevel }: GradedTextTabProps) => {
               />
               <Checkbox.Root
                 checked={showEnglish}
-                onCheckedChange={(details) => setShowEnglish(!!details.checked)}
+                onCheckedChange={(details) => {
+                  setShowEnglish(!!details.checked);
+                  trackTranslationToggle({
+                    action: !!details.checked ? 'show' : 'hide',
+                    deviceType: isDesktop ? 'desktop' : 'mobile',
+                  });
+                }}
                 size="sm"
               >
                 <Checkbox.HiddenInput />

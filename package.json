@@ -32,6 +32,7 @@
   "dependencies": {
     "@chakra-ui/react": "^3.33.0",
     "@emotion/react": "^11.14.0",
+    "@next/third-parties": "^16.1.6",
     "commit-and-tag-version": "^12.6.1",
     "knip": "^5.83.1",
     "next": "^16.1.6",
