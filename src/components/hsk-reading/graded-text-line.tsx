@@ -11,7 +11,10 @@ interface GradedTextLineProps {
   showEnglish: boolean;
 }
 
-export const GradedTextLineComponent = ({ line, showEnglish }: GradedTextLineProps) => {
+export const GradedTextLineComponent = ({
+  line,
+  showEnglish,
+}: GradedTextLineProps) => {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
   const isDesktop = useBreakpointValue({ base: false, md: true });
@@ -35,41 +38,25 @@ export const GradedTextLineComponent = ({ line, showEnglish }: GradedTextLinePro
       >
         {line.word.split('').map((char, index) => (
           <GradedTextPopover
-            key={`${char}-${index}`}
+            key={`${line.word}-${char}-${index}`}
             line={{
               word: char,
               pinyin: line.pinyin,
               english: line.english,
             }}
-          >
-            <Box
-              as="span"
-              _hover={{
-                color: 'blue.500',
-                cursor: 'pointer',
-                textDecoration: 'underline',
-                textDecorationColor: 'blue.300',
-                textDecorationThickness: '2px',
-                textUnderlineOffset: '4px',
-              }}
-              transition="all 0.2s"
-              mx={0.5}
-            >
-              {char}
-            </Box>
-          </GradedTextPopover>
+          />
         ))}
       </Text>
 
       {/* English translation (optional) */}
       {showEnglish && (
         <Text
+          borderColor={borderColor}
+          borderLeft="2px solid"
           color={subtitleColor}
           fontSize={isDesktop ? 'md' : 'sm'}
           fontStyle="italic"
           pl={4}
-          borderLeft="2px solid"
-          borderColor={borderColor}
         >
           {line.english}
         </Text>
