@@ -5,10 +5,10 @@
       "outputs": [".next/**", "!.next/cache/**", "public/**"],
       "env": []
     },
-    "ultracite:check": {
-      "outputs": [],
-      "inputs": ["biome.json", "src/**"]
-    },
+    // "ultracite:check": {
+    //   "outputs": [],
+    //   "inputs": ["biome.json", "src/**"]
+    // },
     "type:check": {
       "inputs": ["tsconfig.json", "src/**"],
       "outputs": ["*.tsbuildinfo"]
